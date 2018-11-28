@@ -113,7 +113,7 @@ client.on('message', async msg => {
         
 		if (!permissions.has('SPEAK')) {
 
-			return msg.channel.send("انا لا يمكنني التكلم في هاذه الروم");
+			return msg.channel.send("انا لا يمكنني التكلم في هذا الروم");
 		}
 
 		if (!permissions.has('EMBED_LINKS')) {
@@ -352,5 +352,20 @@ client.on('ready', () => {
 client.user.setGame(`-help`,"http://twitch.tv/Death Shop")
 client.user.setStatus("dnd")
 });
+
+client.on('message', msg => {
+
+    if (msg.content == '-join') {
+        if (msg.member.voiceChannel) {
+
+     if (msg.member.voiceChannel.joinable) {
+         msg.member.voiceChannel.join().then(msg.react('white_check_mark'));
+     }
+    }
+}
+})
+client.on('ready', () => { //code bot not leave room voice //Bot Is Online
+    client.channels.get("517336146531844097").join(); //by : Toxic Codes
+    });
 
 client.login(process.env.BOT_TOKEN);
